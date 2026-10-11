@@ -18,7 +18,7 @@ Antes de enviar un handoff, revisa la ficha del destinatario en `Fichas/`:
 - `Fichas/{{PLANNER}}.md`
 - `Fichas/{{EXECUTOR}}.md`
 
-Si quieres que use un subagente, un modo multi-agente, un comando `/`, un skill o un plugin, nómbralo en el handoff **exactamente** como aparece en su ficha. Por ejemplo: "usa tu modo X para paralelizar los tests".
+Si quieres que use un subagente, un modo multi-agente, un comando `/`, un skill o un plugin, nómbralo en el handoff **exactamente** como aparece en su ficha, junto con el **nivel de modelo** (potente / estándar / ligero). Por ejemplo: "U3: usa tu modo X con nivel ligero para los renombres".
 
 ## Comandos de Herdr que usa el equipo
 

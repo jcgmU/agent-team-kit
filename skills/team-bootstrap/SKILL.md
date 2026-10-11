@@ -38,7 +38,7 @@ Revisa y muéstrale al usuario una tabla con ✅ / ⚠ / ❌ y, al lado de cada 
 - Crea `<ruta>\brain\Equipo\Fichas\` y copia allí `templates/ficha-plantilla.md` como `_plantilla-ficha.md`.
 - A cada agente `<n>` (menos tú), en paralelo:
   ```
-  herdr agent prompt <n> "Escribe tu ficha de capacidades en <ruta>\brain\Equipo\Fichas\<n>.md siguiendo la plantilla <ruta>\brain\Equipo\Fichas\_plantilla-ficha.md. Se honesto: si no tienes algo, dilo. Explica como se invocan exactamente tus subagentes o tu modo multi-agente, tus comandos slash, skills y plugins o MCP. Al terminar responde solo FICHA LISTA." --wait --until working --until done --until blocked --timeout 15000
+  herdr agent prompt <n> "Escribe tu ficha de capacidades en <ruta>\brain\Equipo\Fichas\<n>.md siguiendo la plantilla <ruta>\brain\Equipo\Fichas\_plantilla-ficha.md. Se honesto: si no tienes algo, dilo. Explica como se invocan exactamente tus subagentes o tu modo multi-agente, cuantos corren en paralelo, como se asigna un modelo a cada uno, que modelos tienes para tareas complejas, normales y faciles, tus comandos slash, skills y plugins o MCP. Al terminar responde solo FICHA LISTA." --wait --until working --until done --until blocked --timeout 15000
   ```
   El texto del prompt **no** puede llevar comillas dobles dentro.
 - Luego espera a cada uno con `herdr agent wait <n> --timeout 300000`.
@@ -48,7 +48,8 @@ Revisa y muéstrale al usuario una tabla con ✅ / ⚠ / ❌ y, al lado de cada 
 - **Verificación cruzada:** en cada ficha, completa la tabla "Verificación del orquestador":
   - versión real (`<kind> --version`);
   - detección y engram (resultados del paso 3);
-  - que existan las carpetas de skills que el agente declaró.
+  - que existan las carpetas de skills que el agente declaró;
+  - que los modelos declarados existan (por ejemplo, en el `--help` o la configuración del CLI).
 
   Marca cada dato como ✅ verificado, ⚠ declarado (no verificable) o ❌ contradicho.
 
@@ -80,7 +81,7 @@ Crea también las carpetas vacías `<ruta>\brain\Handoffs`, `<ruta>\brain\Decisi
 - **engram:** `mem_save` con `project: <nombre>`, título `Bootstrap del equipo <nombre>`, y en el contenido los roles, los agentes y sus versiones. Si falla, pon `engram_pendiente: si` en `STATE.md`.
 - **Avisa a cada agente su rol:**
   ```
-  herdr agent prompt <n> "Eres el <planificador|ejecutor> del proyecto <nombre>. Lee <ruta>\brain\Equipo\Protocolo.md, <ruta>\brain\Equipo\Comandos.md y las fichas de <ruta>\brain\Equipo\Fichas. Responde solo PROTOCOLO LEIDO." --wait --timeout 300000
+  herdr agent prompt <n> "Eres el <planificador|ejecutor> del proyecto <nombre>. Lee <ruta>\brain\Equipo\Protocolo.md (en especial Trabajo multi-agente y Niveles de modelo), <ruta>\brain\Equipo\Comandos.md y todas las fichas de <ruta>\brain\Equipo\Fichas para saber que puedes pedirle a cada agente. Responde solo PROTOCOLO LEIDO." --wait --timeout 300000
   ```
   Confírmalo con `herdr agent read <n> --source recent-unwrapped --lines 20`.
 - **Repórtale al usuario:**

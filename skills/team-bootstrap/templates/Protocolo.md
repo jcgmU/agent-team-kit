@@ -13,7 +13,34 @@
 - **Orquestador:** recibe los objetivos del usuario, coordina, verifica de verdad y reporta al usuario. **No corrige código:** devuelve hallazgos al planificador.
 - **Planificador:** convierte objetivos en planes con criterios de aceptación verificables, revisa de verdad el trabajo del ejecutor antes de pasarlo a verificación y mantiene `brain/Equipo/Verificacion.md`.
 - **Ejecutor:** implementa exactamente el plan (con TDD cuando aplique) y reporta qué hizo y cómo verificarlo.
-- Cada uno puede y debe usar sus propios subagentes o su modo multi-agente cuando convenga (ver su ficha en `Fichas/`).
+
+## Trabajo multi-agente (obligatorio)
+
+Nadie trabaja solo si su ficha muestra subagentes o un modo multi-agente: los usa. Antes de cada tarea, cada agente consulta `Fichas/` para saber qué puede hacer él y qué puede pedirle a los demás.
+
+- **Planificador**
+  - Usa **su** sistema multi-agente para investigar y planificar en paralelo: explorar el código, comparar opciones, revisar riesgos.
+  - Diseña el plan **para que lo ejecuten en paralelo los subagentes del ejecutor**, no para que lo haga una sola instancia:
+    - divide el trabajo en **unidades** independientes, con dependencias explícitas;
+    - agrupa en **oleadas** las unidades que pueden correr al mismo tiempo;
+    - en cada unidad indica qué subagente o modo del ejecutor la hace (con el nombre exacto que figura en su ficha) y el **nivel de modelo** que corresponde (ver abajo).
+- **Ejecutor**
+  - Ejecuta el plan con **su** sistema multi-agente, respetando las asignaciones: lanza en paralelo las unidades de cada oleada y pasa a la siguiente oleada cuando termina la anterior.
+  - Integra los resultados, corre los tests de conjunto y reporta el resultado **por unidad**.
+  - Si una asignación no es posible con sus capacidades reales, lo dice en el handoff `ejecucion`. No la cambia en silencio.
+- **Orquestador:** reparte la verificación entre sus subagentes cuando hay varios chequeos independientes.
+
+### Niveles de modelo
+
+| Nivel | Para qué | Ejemplos |
+|---|---|---|
+| **potente** | lo que exige razonar a fondo | arquitectura, diseño, depuración difícil, cambios que cruzan módulos, seguridad, planificación |
+| **estándar** | implementación normal con un plan claro | funciones, endpoints, componentes, tests |
+| **ligero** | tareas mecánicas | renombres, formato, boilerplate, búsquedas, documentación simple |
+
+- Cada agente traduce el nivel a sus modelos reales según su ficha (sección "Modelos disponibles y cómo elegirlos").
+- Si una unidad falla con un nivel, en la ronda siguiente se le asigna el nivel superior.
+- No uses el nivel potente para tareas ligeras: es lento y caro sin ganar nada.
 
 ## Ciclo
 
@@ -49,6 +76,14 @@ referencias:
 
 Qué se pide o qué se hizo, archivos tocados, cómo verificarlo y, si quieres que el destinatario use sus subagentes o su modo multi-agente, la capacidad exacta tal como figura en su ficha.
 ```
+
+**Un handoff de tipo `plan` incluye siempre la tabla de unidades:**
+
+| Unidad | Oleada | Qué hace | Depende de | Subagente / modo del ejecutor | Nivel de modelo | Criterio de aceptación |
+|---|---|---|---|---|---|---|
+| U1 | 1 | … | — | <nombre exacto de su ficha> | estándar | … |
+
+**Un handoff de tipo `ejecucion` responde con la misma tabla:** estado de cada unidad, el modelo que se usó realmente y la evidencia.
 
 **Enviar:**
 1. Escribe el archivo.

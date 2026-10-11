@@ -12,7 +12,14 @@ estado: completa
 <leer y escribir archivos, terminal, navegador, búsqueda web, etc.>
 
 ## Subagentes y modo multi-agente
-<qué tienes, cómo se invoca exactamente y cuándo conviene pedírtelo>
+<qué tienes, cómo se invoca exactamente, cuántos puedes correr en paralelo y cómo se le asigna un modelo a cada subagente>
+
+## Modelos disponibles y cómo elegirlos
+| Nivel | Modelo que usas | Cómo se selecciona (flag, comando o parámetro) |
+|---|---|---|
+| potente | | |
+| estándar | | |
+| ligero | | |
 
 ## Comandos `/`
 <comandos slash disponibles y para qué sirven>
@@ -37,3 +44,4 @@ estado: completa
 | Detección en Herdr | | |
 | Engram | | |
 | Rutas de skills | | |
+| Modelos declarados | | |
