@@ -1,0 +1,21 @@
+[project]
+name = "{{PROJECT}}"
+engram_project = "{{PROJECT}}"
+created = "{{DATE}}"
+
+[orchestrator]
+agent_name = "{{ORCHESTRATOR}}"
+kind = "claude"
+version = "{{ORCHESTRATOR_VERSION}}"
+
+[roles.planner]
+agent_name = "{{PLANNER}}"
+kind = "{{PLANNER_KIND}}"
+version = "{{PLANNER_VERSION}}"
+last_session_id = "{{PLANNER_SESSION}}"
+
+[roles.executor]
+agent_name = "{{EXECUTOR}}"
+kind = "{{EXECUTOR_KIND}}"
+version = "{{EXECUTOR_VERSION}}"
+last_session_id = "{{EXECUTOR_SESSION}}"

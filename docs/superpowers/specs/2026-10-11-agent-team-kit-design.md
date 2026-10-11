@@ -1,7 +1,7 @@
 # agent-team-kit — Diseño
 
 - **Fecha:** 2026-10-11
-- **Estado:** Borrador para revisión del usuario
+- **Estado:** Implementado en versión simple (2026-10-11): solo dos skills (`team-bootstrap`, `team-resume`). Lo que aquí figura como skills/CLI aparte (handoff, verify, checkpoint, doctor) quedó como reglas dentro de `templates/Protocolo.md` y pasos de las dos skills.
 - **Repo:** `C:\Users\jcgm1\OneDrive\Desktop\agent-team-kit`
 
 ## 1. Propósito
