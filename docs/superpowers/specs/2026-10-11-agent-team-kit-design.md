@@ -6,9 +6,8 @@
 
 ## 1. Propósito
 
-Convertir la forma de trabajar validada en RESTAURANTE-OS (un agente planifica, otro ejecuta y Claude
-orquesta y verifica, coordinados por Herdr) en un **sistema genérico y reutilizable** para cualquier
-proyecto, que:
+Un **sistema genérico y reutilizable**, independiente de cualquier proyecto, en el que un agente
+planifica, otro ejecuta y Claude orquesta y verifica, coordinados por Herdr. El sistema:
 
 - se arme **solo cuando el usuario lo invoca** (nunca automáticamente);
 - no dependa de qué LLM cumple cada rol (se elige al iniciar cada proyecto);
@@ -99,8 +98,8 @@ Convención de idioma: nombres de skills, scripts y código en inglés; contenid
 ### 3.4 Engram
 
 `team.toml` fija `engram_project = "<nombre>"`. Los tres agentes guardan y buscan con ese proyecto
-explícito, en vez de dejar que engram lo adivine por la carpeta de trabajo (causa de que memorias de
-Resto quedaran bajo "system32").
+explícito, en vez de dejar que engram lo adivine por la carpeta de trabajo (si un agente arranca
+fuera de la carpeta del proyecto, sus memorias quedarían bajo un proyecto equivocado).
 
 ### 3.5 Formato de `team.toml`
 
